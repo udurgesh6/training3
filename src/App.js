@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+const App = () => {
+  const [num, setNum] = useState(1);
+  let num1 = 1;
+  const incrementNormalVariable = () => {
+    num1 = num1 + 1;
+    console.log(num1);
+  };
+  const incrementStateVariable = () => {
+    setNum((num) => num + 1);
+    console.log(num);
+  };
+  const [name, setName] = useState("");
+  const [names, setNames] = useState([]);
+
+  const onNameAdd = () => {
+    setNames((names) => [...names, name]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>Normal variable - {num1}</p>
+      <p>State Variable - {num}</p>
+      <button onClick={incrementNormalVariable}>
+        Increment Normal Variable
+      </button>
+      <button onClick={incrementStateVariable}>Increment State Variable</button>
+      <input
+        value={name}
+        onChange={(pyanshi) => setName(pyanshi.target.value)}
+      />
+      <button onClick={onNameAdd}>Add Name</button>
+      {names.map((element, index) => (
+        <p key={index}>{element}</p>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
