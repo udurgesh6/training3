@@ -1,38 +1,51 @@
 import React, { useState } from "react";
 
 const App = () => {
-  const [num, setNum] = useState(1);
-  let num1 = 1;
-  const incrementNormalVariable = () => {
-    num1 = num1 + 1;
-    console.log(num1);
-  };
-  const incrementStateVariable = () => {
-    setNum((num) => num + 1);
-    console.log(num);
-  };
+  const [people, setPeople] = useState([]);
   const [name, setName] = useState("");
-  const [names, setNames] = useState([]);
-
-  const onNameAdd = () => {
-    setNames((names) => [...names, name]);
+  const [id, setId] = useState(0);
+  const addPerson = () => {
+    let filteredElement = people.filter((ele) => ele.person_id === id);
+    if (filteredElement.length > 0) {
+      alert("Person with this ID already exists!");
+    } else {
+      let obj = {
+        person_name: name,
+        person_id: id,
+      };
+      setPeople((people) => [...people, obj]);
+      setName("");
+      setId(0);
+    }
   };
-
+  const removePerson = (pers_id) => {
+    let tempPeople = people.filter((ele) => ele.person_id !== pers_id);
+    setPeople(tempPeople);
+  };
   return (
     <div>
-      <p>Normal variable - {num1}</p>
-      <p>State Variable - {num}</p>
-      <button onClick={incrementNormalVariable}>
-        Increment Normal Variable
-      </button>
-      <button onClick={incrementStateVariable}>Increment State Variable</button>
       <input
+        placeholder="Name"
+        type="text"
         value={name}
-        onChange={(pyanshi) => setName(pyanshi.target.value)}
+        onChange={(e) => setName(e.target.value)}
       />
-      <button onClick={onNameAdd}>Add Name</button>
-      {names.map((element, index) => (
-        <p key={index}>{element}</p>
+      <input
+        placeholder="Id"
+        type="number"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+      />
+      <button onClick={addPerson}>Add Person</button>
+      <p>Employees</p>
+      {people.map((ele, eleIndex) => (
+        <div key={eleIndex}>
+          <p>Name = {ele.person_name}</p>
+          <p>Id - {ele.person_id}</p>
+          <button onClick={() => removePerson(ele.person_id)}>
+            Remove {ele.person_name}
+          </button>
+        </div>
       ))}
     </div>
   );
