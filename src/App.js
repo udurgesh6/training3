@@ -1,32 +1,21 @@
-// Conditional Rendering
-import React, { useState } from "react";
-import Books from "./components/Books";
-import Toys from "./components/Toys";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./components/About";
+import Blogs from "./components/Blogs";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
 
-const App = () => {
-  const [currentlyShowing, setCurrentlyShowing] = useState("B");
-  const [num, setNum] = useState(0);
-  const onNumInc = () => {
-    setNum((num) => num + 1);
-  };
-  const onSwitch = () => {
-    if (currentlyShowing === "B") {
-      setCurrentlyShowing("T");
-    } else {
-      setCurrentlyShowing("B");
-    }
-  };
+function App() {
   return (
-    <div>
-      <p>This is my App Component</p>
-      <p>Num = {num}</p>
-      <button onClick={onSwitch}>Switch</button>
-      <button onClick={onNumInc}>Increment</button>
-      {/* {currentlyShowing === "B" ? <Books /> : <Toys />} */}
-      {currentlyShowing === "B" && <Books />}
-      {currentlyShowing === "T" && <Toys />}
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
