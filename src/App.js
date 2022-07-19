@@ -4,6 +4,7 @@ import About from "./components/About";
 import Blogs from "./components/Blogs";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
+import Parent from "./components/Parent";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/about" element={<About />} />
+        <Route path="/parent" element={<Parent />} />
       </Routes>
     </BrowserRouter>
   );

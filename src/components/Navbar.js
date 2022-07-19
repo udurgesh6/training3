@@ -12,6 +12,9 @@ const Navbar = () => {
       <Link to="/about" style={{ marginRight: "20px" }}>
         About
       </Link>
+      <Link to="/parent" style={{ marginRight: "20px" }}>
+        Parent
+      </Link>
     </nav>
   );
 };
