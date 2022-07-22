@@ -1,21 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Nav.Link } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 const Navbar = () => {
   return (
-    <nav>
-      <Link to="/" style={{ marginRight: "20px" }}>
-        Home
-      </Link>
-      <Link to="/blogs" style={{ marginRight: "20px" }}>
-        Blogs
-      </Link>
-      <Link to="/about" style={{ marginRight: "20px" }}>
-        About
-      </Link>
-      <Link to="/parent" style={{ marginRight: "20px" }}>
-        Parent
-      </Link>
-    </nav>
+    <Nav
+      activeKey="/"
+      onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+    >
+      <Nav.Item>
+        <Nav.Link to="/" style={{ marginRight: "20px" }}>
+          Home
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link to="/blogs" style={{ marginRight: "20px" }}>
+          Blogs
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link to="/about" style={{ marginRight: "20px" }}>
+          About
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link to="/parent" style={{ marginRight: "20px" }}>
+          Parent
+        </Nav.Link>
+      </Nav.Item>
+    </Nav>
   );
 };
 

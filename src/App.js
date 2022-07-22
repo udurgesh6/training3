@@ -8,15 +8,17 @@ import Parent from "./components/Parent";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/parent" element={<Parent />} />
-      </Routes>
-    </BrowserRouter>
+    <div style={{ backgroundColor: "black", height: "100vh" }}>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/parent" element={<Parent />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
