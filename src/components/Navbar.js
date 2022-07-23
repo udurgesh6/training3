@@ -1,6 +1,7 @@
 import React from "react";
-// import { Nav.Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <Nav
@@ -8,24 +9,34 @@ const Navbar = () => {
       onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
     >
       <Nav.Item>
-        <Nav.Link to="/" style={{ marginRight: "20px" }}>
+        <Link to="/" style={{ marginRight: "20px" }}>
           Home
-        </Nav.Link>
+        </Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link to="/blogs" style={{ marginRight: "20px" }}>
+        <Link to="/blogs" style={{ marginRight: "20px" }}>
           Blogs
-        </Nav.Link>
+        </Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link to="/about" style={{ marginRight: "20px" }}>
+        <Link to="/about" style={{ marginRight: "20px" }}>
           About
-        </Nav.Link>
+        </Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link to="/parent" style={{ marginRight: "20px" }}>
+        <Link to="/parent" style={{ marginRight: "20px" }}>
           Parent
-        </Nav.Link>
+        </Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Link to="/usememo" style={{ marginRight: "20px" }}>
+          UseMemo
+        </Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Link to="/usecbandmemo" style={{ marginRight: "20px" }}>
+          UseCBAndMemo
+        </Link>
       </Nav.Item>
     </Nav>
   );
