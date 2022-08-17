@@ -1,57 +1,49 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-
+import React, { useState, useReducer } from "react";
+const initialState = { count: 0, customer_name: "Durgesh", age: 24 };
+//Function  ==> initialState, Action
+const reducer = (state, action) => {
+  if (action.type === "increment") {
+    return {
+      count: state.count + action.payload,
+      customer_name: state.customer_name,
+      age: state.age,
+    };
+  }
+  if (action.type === "decrement") {
+    return {
+      count: state.count - action.payload,
+      customer_name: state.customer_name,
+      age: state.age,
+    };
+  }
+  if (action.type === "changename") {
+    return {
+      count: state.count,
+      customer_name: action.payload,
+      age: state.age,
+    };
+  }
+};
 const Home = () => {
-  const [employees, setEmployees] = useState([]);
-  const [name, setName] = useState("");
-  const [testing_id, setTesting_id] = useState(0);
-  const [age, setAge] = useState(19);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/employees")
-      .then((response) => {
-        console.log(response.data);
-        setEmployees(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Something went wrong");
-      });
-  }, []);
-
-  const addPerson = () => {
-    axios
-      .post("http://localhost:8080/employees/add", {
-        testing_id: testing_id,
-        name: name,
-        age: age,
-      })
-      .then((response) => {
-        console.log(response.data);
-        setEmployees((employees) => [
-          ...employees,
-          {
-            testing_id: testing_id,
-            name: name,
-            age: age,
-          },
-        ]);
-      });
-  };
-
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div>
-      {employees.map((emp, empid) => (
-        <p key={empid}>{emp.name}</p>
-      ))}
-      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <p>This is Home Component</p>
+      <p>Count - {state.count}</p>
+      <p>Name - {state.customer_name}</p>
+      <button onClick={() => dispatch({ type: "increment", payload: 2 })}>
+        Increment
+      </button>
+      <button onClick={() => dispatch({ type: "decrement", payload: 3 })}>
+        Decrement
+      </button>
       <input
-        value={testing_id}
-        onChange={(e) => setTesting_id(e.target.value)}
+        value={state.customer_name}
+        type="text"
+        onChange={(e) =>
+          dispatch({ type: "changename", payload: e.target.value })
+        }
       />
-      <input value={age} onChange={(e) => setAge(e.target.value)} />
-      <button onClick={addPerson}>Add this person</button>
     </div>
   );
 };
